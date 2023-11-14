@@ -65,6 +65,11 @@
               "@type": "@id",
               "@container": "@graph"
             },
+            "calim": {
+              "@id": "sec:calim",
+              "@type": "@id",
+              "@container": "@graph"
+            },
             "refreshService": {
               "@id": "cred:refreshService",
               "@type": "@id",
@@ -352,28 +357,27 @@
       }
     }
   ],
-  "credentialSubject": {
-    "@explicit": true,
-    "id": "did:hid:testnet:z8Fo8daHrZrQ4NtDZ9byYgrkEKqK43dkBNxorxpAEm3rj",
-    "fullName": "Pratap Mridha",
-    "companyName": "HyperSign",
-    "address": {
-      "center": "Mumbai"
-    },
-    "invoiceNumber": "1234567890"
-  },
   "id": "http://example.edu/credentials/3732",
-  "issuanceDate": "2023-10-10T05:03:27.153Z",
-  "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "type": [
     "VerifiableCredential",
     "DayPassCredential"
   ],
+  "credentialSubject": {
+    "@explicit": true,
+    "id": "did:hid:testnet:z8Fo8daHrZrQ4NtDZ9byYgrkEKqK43dkBNxorxpAEm3rj",
+    "address": {
+      "center": "Mumbai"
+    },
+    "fullName": "Pratap Mridha"
+  },
+  "issuanceDate": "2023-10-10T05:03:27.153Z",
+  "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "proof": {
-    "type": "BJJSignature2021",
-    "created": "2023-11-14T13:56:23Z",
+    "type": "BabyJubJubSignatureProof2021",
+    "created": "2023-11-14T13:56:29.769Z",
     "verificationMethod": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM#key-1",
     "proofPurpose": "assertionMethod",
+    "credentialRoot": "z2GSXoTb7PCxEMGtknEDLUJMynPXffGCxNRGNBBvaMing.z4fvJ51ED6CLGNCiK6JQ1q18UJhUPFgMiouJjXqhZTQ4p",
     "proofValue": "z2YwahAqBjGyndC2xcRepcH9N4HrRTqWH3cuT2u8Bj2i18cKHSn7odRTZwX4todL3D5bS5q2w6X5NVRppHQTfGBDi"
   }
 }

@@ -1,5 +1,6 @@
 // @ts-ignore
 import jsigs from "jsonld-signatures";
+import * as fs from "fs";
 import { BabyJubJubKeys2021 } from "babyjubjub2021";
 // @ts-ignore
 import jsonLd from "jsonld";
@@ -935,13 +936,13 @@ const main = async () => {
     issuer: {},
     type: ["VerifiableCredential", "DayPassCredential"],
   };
-
   const derived = await bjjSignatureProof.deriveProof(cred, revealDocument, {
     suite: await BabyJubJubKeys2021.fromKeys({
       publicKeyMultibase: "z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
     }),
   });
   // console.log("========",derived);
+  fs.writeFileSync("derived.json", JSON.stringify(derived, null, 2));
 
   console.log(
     await jsigs.verify(derived, {
