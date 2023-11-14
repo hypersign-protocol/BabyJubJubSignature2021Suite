@@ -27,10 +27,6 @@ declare class BabyJubJubSignature2021Suite extends LinkedDataSignature {
         addSuiteContext: any;
     }): void;
     canonize(input: Record<string, any>): Promise<Merklizer>;
-    compactSignature(signature: Signature): Uint8Array;
-    convertMultiBase(data: Uint8Array): string;
-    multibaseDecode(signature: string): Uint8Array;
-    decompactSignature(sign: string): Signature;
     createProof(options: {
         document: any;
         suite: BabyJubJubSignature2021Suite;

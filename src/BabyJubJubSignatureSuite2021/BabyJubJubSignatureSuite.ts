@@ -14,6 +14,12 @@ const {
   purposes: { AssertionProofPurpose },
 } = jsigs;
 
+import {
+  compactSignature,
+  convertMultiBase,
+  decompactSignature,
+  multibaseDecode,
+} from "../utils";
 import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
 
 import { w3cDate } from "../utils";
@@ -71,21 +77,6 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
     return merklized;
   }
 
-  compactSignature(signature: Signature) {
-    return signature.compress();
-  }
-  convertMultiBase(data: Uint8Array) {
-    return Buffer.from(multibase.encode("base58btc", data)).toString();
-  }
-  multibaseDecode(signature: string): Uint8Array {
-    return multibase.decode(signature);
-  }
-  decompactSignature(sign: string): Signature {
-    const decoded = this.multibaseDecode(sign);
-    const signature = Signature.newFromCompressed(decoded);
-    return signature;
-  }
-
   async createProof(options: {
     document: any;
     suite: BabyJubJubSignature2021Suite;
@@ -128,8 +119,8 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
       verifyData: verifyData,
       proof: proof,
     });
-    proof[this.proofSignatureKey] = this.convertMultiBase(
-      this.compactSignature(signature)
+    proof[this.proofSignatureKey] = convertMultiBase(
+      compactSignature(signature)
     );
     return proof;
   }
@@ -146,13 +137,15 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
   async verifyProof(options: { document: any; proof: any }) {
     try {
       const merklized = await this.canonize(options.document);
+
       const verifyData = (await merklized.root()).bigInt();
       const { proofValue } = options.proof;
 
       const { verificationMethod } = options.proof;
+
       const verified = await this.verifySignature({
         verifyData,
-        signature: this.decompactSignature(proofValue),
+        signature: decompactSignature(proofValue),
       });
 
       return {
@@ -174,6 +167,7 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
       const key = await this.LDKeyClass.from(this.verificationMethod);
       verifier = key.verifier();
     }
+
     const verified = await verifier.verify({
       data: options.verifyData,
       signature: options.signature,
