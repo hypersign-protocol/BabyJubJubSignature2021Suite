@@ -1,15 +1,18 @@
 import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
-import { BabyJubJubSignature2021Suite, documentLoader } from "../src/index";
+import { BabyJubJubSignature2021Suite, BabyJubJubSignatureProof2021, documentLoader } from "../src/index";
 import * as fs from "fs";
+
+import { deriveProof } from "../src/index";
 //@ts-ignore
 
 import jsigs from "jsonld-signatures";
 
-let publicKeyMultibase: any, privateKeyMultibase: any;
-let cred: any;
-let keys: any;
-let DID: any;
-describe("BbabyJubJubSignature2021", () => {
+describe("BabyJubJubSignatureProof2021 Test Case", () => {
+  let publicKeyMultibase: any, privateKeyMultibase: any;
+  let cred: any;
+  let keys: any;
+  let DID: any;
+  let signedCredentials: any;
   beforeEach(async () => {
     const KeyPair = await BabyJubJubKeys2021.from(
       "liberty taste budget never right tent whip menu fog shine angle habit view between art perfect razor burger fence found scatter bounce laptop cruise"
@@ -40,10 +43,13 @@ describe("BbabyJubJubSignature2021", () => {
         controller: DID,
       },
     });
-  });
 
-  it("Sign Credential", async () => {
-    cred = {
+    signedCredentials = fs.readFileSync("./test/Data/signedCredential.json");
+    signedCredentials = JSON.parse(signedCredentials);
+  });
+  it("Derive Selective Disclosure from signed credential", async () => {
+
+    const revealDocument = {
       "@context": [
         {
           "@context": {
@@ -110,6 +116,12 @@ describe("BbabyJubJubSignature2021", () => {
                   "@type": "@id",
                   "@container": "@graph",
                 },
+                calim: {
+                  "@id": "sec:calim",
+                  "@type": "@id",
+                  "@container": "@graph",
+                },
+
                 refreshService: {
                   "@id": "cred:refreshService",
                   "@type": "@id",
@@ -400,61 +412,47 @@ describe("BbabyJubJubSignature2021", () => {
       ],
       credentialSubject: {
         "@explicit": true,
-        id: "did:hid:testnet:z8Fo8daHrZrQ4NtDZ9byYgrkEKqK43dkBNxorxpAEm3rj",
-        fullName: "Pratap Mridha",
-        companyName: "HyperSign",
-        address: {
-          center: "Mumbai",
-        },
-        invoiceNumber: "1234567890",
+
+        id: {},
+        address: {},
       },
-      id: "http://example.edu/credentials/3732",
-      issuanceDate: "2023-10-10T05:03:27.153Z",
-      issuer: "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
+      issuanceDate: {},
+      issuer: {},
       type: ["VerifiableCredential", "DayPassCredential"],
     };
 
-    const signedCredential = await jsigs.sign(cred, {
-      suite: new BabyJubJubSignature2021Suite({
-        key: keys,
-      }),
-      // @ts-ignore
-      purpose: new jsigs.purposes.AssertionProofPurpose({
-        controller: {
-          "@context": ["https://www.w3.org/ns/did/v1"],
-          id: DID.id + "#key-1",
-          assertionMethod: DID.assertionMethod,
-        },
-      }),
-      documentLoader,
-    });
-
-    fs.writeFileSync(
-      "./test/Data/signedCredential.json",
-      JSON.stringify(signedCredential, null, 2)
+    const derived = await deriveProof(
+      signedCredentials,
+      revealDocument,
+      {
+        suite: await BabyJubJubKeys2021.fromKeys({
+          publicKeyMultibase: publicKeyMultibase,
+        }),
+      }
     );
 
-    const verified = await jsigs.verify(signedCredential, {
-      suite: new BabyJubJubSignature2021Suite({
+    expect(derived.proof.type).toBe("BabyJubJubSignatureProof2021");
+    expect(derived.proof.proofPurpose).toBe("assertionMethod");
+    expect(derived.proof.credentialRoot).toBeDefined();
+    fs.writeFileSync(
+      "./test/Data/derivedProof.json",
+      JSON.stringify(derived, null, 2)
+    );
+
+    const result = await jsigs.verify(derived, {
+      suite: new BabyJubJubSignatureProof2021({
         key: BabyJubJubKeys2021.fromKeys({
-          publicKeyMultibase: DID.verificationMethod[0].publicKeyMultibase,
-          options: {
-            id: DID.id + "#key-1",
-            controller: DID.controller,
-          },
+          publicKeyMultibase: publicKeyMultibase,
         }),
       }),
-      // @ts-ignore
       purpose: new jsigs.purposes.AssertionProofPurpose({
         controller: {
           "@context": ["https://www.w3.org/ns/did/v1"],
-          id: DID.id + "#key-1",
-          assertionMethod: DID.assertionMethod,
+          id: DID.id,
+          assertionMethod: [derived.proof.verificationMethod],
         },
       }),
-      documentLoader,
     });
-
-    expect(verified.verified).toBe(true);
+    expect(result.verified).toBeTruthy();
   });
 });

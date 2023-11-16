@@ -1,4 +1,4 @@
-import { BabyJubJubKeys2021 } from "babyjubjub2021";
+import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
 declare const LinkedDataProof: any;
 export declare class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     private type;
@@ -36,5 +36,8 @@ export declare class BabyJubJubSignatureProof2021 extends LinkedDataProof {
         expansionMap: any;
     }): Promise<boolean>;
 }
+export declare function deriveProof(proofDocument: any, revealDocument: any, params: {
+    suite: BabyJubJubKeys2021;
+}): Promise<any>;
 export {};
 //# sourceMappingURL=BabyJubJubSignatureProof.d.ts.map
