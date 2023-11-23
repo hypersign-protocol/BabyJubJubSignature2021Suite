@@ -373,7 +373,7 @@
   "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "proof": {
     "type": "BabyJubJubSignatureProof2021",
-    "created": "2023-11-16T05:39:41.882Z",
+    "created": "2023-11-23T06:56:10.601Z",
     "verificationMethod": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM#key-1",
     "proofPurpose": "assertionMethod",
     "credentialRoot": "z2GSXoTb7PCxEMGtknEDLUJMynPXffGCxNRGNBBvaMing.zDGWErmWmoiB2qPAVpUjWQaCBwRwkbZJ5TrhxdFcV2PMV",

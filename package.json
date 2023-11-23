@@ -1,8 +1,9 @@
 {
-  "name": "babyjubjubsignaturesuite2021",
+  "name": "@hypersign-protocol/babyjubjubsignature2021",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "rimraf lib && tsc",
