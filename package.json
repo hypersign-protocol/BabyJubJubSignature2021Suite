@@ -4,6 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
+  "type": "commonjs",
   "scripts": {
     "test": "jest",
     "build": "rimraf lib && tsc",
