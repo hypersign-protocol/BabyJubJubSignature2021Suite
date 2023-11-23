@@ -21,7 +21,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@hypersign-protocol/babyjubjub2021": "https://github.com/hypersign-protocol/BabyJubJubKey2021",
+    "@hypersign-protocol/babyjubjub2021": "https://github.com/hypersign-protocol/BabyJubJubKey2021.git",
     "@iden3/js-crypto": "^1.0.3",
     "@iden3/js-jsonld-merklization": "^1.1.2",
     "babyjubjub2021": "file:../BabyJubJub2021",
