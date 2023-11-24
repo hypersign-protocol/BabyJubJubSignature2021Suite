@@ -38,6 +38,7 @@ export declare class BabyJubJubSignatureProof2021 extends LinkedDataProof {
 }
 export declare function deriveProof(proofDocument: any, revealDocument: any, params: {
     suite: BabyJubJubKeys2021;
+    documentLoader: any;
 }): Promise<any>;
 export {};
 //# sourceMappingURL=BabyJubJubSignatureProof.d.ts.map

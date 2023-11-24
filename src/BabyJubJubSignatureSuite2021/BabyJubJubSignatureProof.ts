@@ -179,11 +179,14 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     const vc_root_multibase = credentialRoot.split(".")[0];
     const selectiveDisclosureRoot = credentialRoot.split(".")[1];
 
+    const opt = options.documentLoader
+      ? {
+          documentLoader: options.documentLoader,
+        }
+      : undefined;
     const mtsd = await Merklizer.merklizeJSONLD(
       JSON.stringify(options.document),
-      {
-        documentLoader: options.documentLoader,
-      }
+      opt
     );
     const mtsdmultibase = convertMultiBase((await mtsd.root()).bytes);
     return mtsdmultibase === selectiveDisclosureRoot;
