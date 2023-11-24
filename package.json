@@ -25,6 +25,7 @@
     "@iden3/js-crypto": "^1.0.3",
     "@iden3/js-jsonld-merklization": "^1.1.2",
     "babyjubjub2021": "file:../BabyJubJub2021",
+    "jsonld": "^4",
     "jsonld-signatures": "^9.3.1",
     "multibase": "^4.0.6"
   }
