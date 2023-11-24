@@ -2,7 +2,10 @@
 import jsigs from "jsonld-signatures";
 import * as fs from "fs";
 import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
-import { getDocumentLoader } from "@iden3/js-jsonld-merklization";
+import {
+  DocumentLoader,
+  getDocumentLoader,
+} from "@iden3/js-jsonld-merklization";
 // @ts-ignore
 import jsonLd from "jsonld";
 import {
@@ -11,7 +14,10 @@ import {
   Value,
   PoseidonHasher,
 } from "@iden3/js-jsonld-merklization";
-import { BabyJubJubSignature2021Suite } from "./BabyJubJubSignatureSuite";
+import {
+  BabyJubJubSignature2021Suite,
+  documentLoader,
+} from "./BabyJubJubSignatureSuite";
 import {
   convertMultiBase,
   decompactSignature,
@@ -125,7 +131,6 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     documentLoader: any;
     expansionMap: any;
   }) {
-
     const { proof } = options;
     if (!proof.credentialRoot) {
       throw new Error("Credential Root is missing");
@@ -175,7 +180,10 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     const selectiveDisclosureRoot = credentialRoot.split(".")[1];
 
     const mtsd = await Merklizer.merklizeJSONLD(
-      JSON.stringify(options.document)
+      JSON.stringify(options.document),
+      {
+        documentLoader: options.documentLoader,
+      }
     );
     const mtsdmultibase = convertMultiBase((await mtsd.root()).bytes);
     return mtsdmultibase === selectiveDisclosureRoot;
@@ -187,11 +195,14 @@ export async function deriveProof(
   revealDocument: any,
   params: {
     suite: BabyJubJubKeys2021;
+    documentLoader: any;
   }
 ) {
   const expansionMap = true;
   const skipProofCompaction = true;
-  const documentLoader = getDocumentLoader;
+  const documentLoader = params.documentLoader
+    ? params.documentLoader
+    : getDocumentLoader;
 
   const bjjSignatureProof = new BabyJubJubSignatureProof2021();
   return bjjSignatureProof.deriveProof(proofDocument, revealDocument, {

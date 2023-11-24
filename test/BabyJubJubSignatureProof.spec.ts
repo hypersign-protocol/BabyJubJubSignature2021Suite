@@ -1,5 +1,9 @@
 import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
-import { BabyJubJubSignature2021Suite, BabyJubJubSignatureProof2021, documentLoader } from "../src/index";
+import {
+  BabyJubJubSignature2021Suite,
+  BabyJubJubSignatureProof2021,
+  documentLoader,
+} from "../src/index";
 import * as fs from "fs";
 
 import { deriveProof } from "../src/index";
@@ -48,7 +52,6 @@ describe("BabyJubJubSignatureProof2021 Test Case", () => {
     signedCredentials = JSON.parse(signedCredentials);
   });
   it("Derive Selective Disclosure from signed credential", async () => {
-
     const revealDocument = {
       "@context": [
         {
@@ -421,15 +424,12 @@ describe("BabyJubJubSignatureProof2021 Test Case", () => {
       type: ["VerifiableCredential", "DayPassCredential"],
     };
 
-    const derived = await deriveProof(
-      signedCredentials,
-      revealDocument,
-      {
-        suite: await BabyJubJubKeys2021.fromKeys({
-          publicKeyMultibase: publicKeyMultibase,
-        }),
-      }
-    );
+    const derived = await deriveProof(signedCredentials, revealDocument, {
+      suite: await BabyJubJubKeys2021.fromKeys({
+        publicKeyMultibase: publicKeyMultibase,
+      }),
+      documentLoader,
+    });
 
     expect(derived.proof.type).toBe("BabyJubJubSignatureProof2021");
     expect(derived.proof.proofPurpose).toBe("assertionMethod");
