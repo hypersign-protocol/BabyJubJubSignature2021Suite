@@ -23,9 +23,7 @@
                 "@version": 1.1,
                 "@protected": true,
                 "id": "@id",
-                "type": "@type",
-                "cred": "https://www.w3.org/2018/credentials#",
-                "JsonSchemaValidator2018": "cred:JsonSchemaValidator2018"
+                "type": "https://www.w3.org/2018/credentials#JsonSchemaValidator2018"
               }
             },
             "credentialStatus": {
@@ -62,11 +60,6 @@
             },
             "proof": {
               "@id": "sec:proof",
-              "@type": "@id",
-              "@container": "@graph"
-            },
-            "calim": {
-              "@id": "sec:calim",
               "@type": "@id",
               "@container": "@graph"
             },
@@ -323,6 +316,20 @@
     {
       "@context": {
         "@protected": true,
+        "hypersign-vocab": "urn:uuid:13fe9318-bb82-4d95-8bf5-8e7fdf8b2026#",
+        "HypersignCredentialStatus2023": {
+          "@id": "hypersign-vocab:HypersignCredentialStatus2023",
+          "@context": {
+            "@protected": true,
+            "id": "@id",
+            "type": "@type"
+          }
+        }
+      }
+    },
+    {
+      "@context": {
+        "@protected": true,
         "@version": 1.1,
         "id": "@id",
         "type": "@type",
@@ -362,6 +369,14 @@
     "VerifiableCredential",
     "DayPassCredential"
   ],
+  "credentialSchema": {
+    "id": "sch:hid:testnet:z6MkipbPd8k6N8BSraPwdBafpM8W5HzNS6jy3F7SwWjDk5Cs:1.0",
+    "type": "JsonSchemaValidator2018"
+  },
+  "credentialStatus": {
+    "id": "http://127.0.0.1:1317/hypersign-protocol/hidnode/ssi/credential/vc:hid:testnet:z6MktDeNN2ZuydfGHoFtbvGvaxMug7dxncZtNspc5H7BkeSo",
+    "type": "HypersignCredentialStatus2023"
+  },
   "credentialSubject": {
     "@explicit": true,
     "id": "did:hid:testnet:z8Fo8daHrZrQ4NtDZ9byYgrkEKqK43dkBNxorxpAEm3rj",
@@ -373,10 +388,10 @@
   "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "proof": {
     "type": "BabyJubJubSignatureProof2021",
-    "created": "2023-11-28T08:31:35.849Z",
+    "created": "2023-11-28T11:57:38.646Z",
     "verificationMethod": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM#key-1",
     "proofPurpose": "assertionMethod",
-    "credentialRoot": "z2GSXoTb7PCxEMGtknEDLUJMynPXffGCxNRGNBBvaMing.zDGWErmWmoiB2qPAVpUjWQaCBwRwkbZJ5TrhxdFcV2PMV",
-    "proofValue": "z2YwahAqBjGyndC2xcRepcH9N4HrRTqWH3cuT2u8Bj2i18cKHSn7odRTZwX4todL3D5bS5q2w6X5NVRppHQTfGBDi"
+    "credentialRoot": "z44ZLgbb1idYuyucCNbVHPX75CeBU3LyuAkCXjrKKVUwK.zgdZavPbeNWnbmCaxAnYUEZXU9DuaqnUohs4ktShAz6X",
+    "proofValue": "zXVF5rFkZR8CEVHEgcmqQnjK6cTLJ8rLAGWvXrhc7SJNeHvR4Ph1qnrpk1kiaXuv5bmtaiHjMUZgbysLVHXAnUNT"
   }
 }

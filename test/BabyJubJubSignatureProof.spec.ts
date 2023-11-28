@@ -77,9 +77,8 @@ describe("BabyJubJubSignatureProof2021 Test Case", () => {
                     "@version": 1.1,
                     "@protected": true,
                     id: "@id",
-                    type: "@type",
-                    cred: "https://www.w3.org/2018/credentials#",
-                    JsonSchemaValidator2018: "cred:JsonSchemaValidator2018",
+                    type: "https://www.w3.org/2018/credentials#JsonSchemaValidator2018",
+              
                   },
                 },
                 credentialStatus: {
@@ -119,12 +118,6 @@ describe("BabyJubJubSignatureProof2021 Test Case", () => {
                   "@type": "@id",
                   "@container": "@graph",
                 },
-                calim: {
-                  "@id": "sec:calim",
-                  "@type": "@id",
-                  "@container": "@graph",
-                },
-
                 refreshService: {
                   "@id": "cred:refreshService",
                   "@type": "@id",
@@ -379,6 +372,20 @@ describe("BabyJubJubSignatureProof2021 Test Case", () => {
         {
           "@context": {
             "@protected": true,
+            "hypersign-vocab": "urn:uuid:13fe9318-bb82-4d95-8bf5-8e7fdf8b2026#",
+            HypersignCredentialStatus2023: {
+              "@id": "hypersign-vocab:HypersignCredentialStatus2023",
+              "@context": {
+                "@protected": true,
+                id: "@id",
+                type: "@type",
+              },
+            },
+          },
+        },
+        {
+          "@context": {
+            "@protected": true,
             "@version": 1.1,
             id: "@id",
             type: "@type",
@@ -419,6 +426,9 @@ describe("BabyJubJubSignatureProof2021 Test Case", () => {
         id: {},
         address: {},
       },
+      credentialSchema: {},
+      credentialStatus: {},
+
       issuanceDate: {},
       issuer: {},
       type: ["VerifiableCredential", "DayPassCredential"],

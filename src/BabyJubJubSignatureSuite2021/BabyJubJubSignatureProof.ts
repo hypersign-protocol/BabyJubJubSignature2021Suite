@@ -7,7 +7,7 @@ import {
   getDocumentLoader,
 } from "@iden3/js-jsonld-merklization";
 // @ts-ignore
-import jsonLd from "jsonld";
+import jsonLd from "jsonld"
 import {
   Merklizer,
   Path,

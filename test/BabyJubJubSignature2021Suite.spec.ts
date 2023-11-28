@@ -68,9 +68,8 @@ describe("BbabyJubJubSignature2021", () => {
                     "@version": 1.1,
                     "@protected": true,
                     id: "@id",
-                    type: "@type",
-                    cred: "https://www.w3.org/2018/credentials#",
-                    JsonSchemaValidator2018: "cred:JsonSchemaValidator2018",
+                    type: "https://www.w3.org/2018/credentials#JsonSchemaValidator2018",
+              
                   },
                 },
                 credentialStatus: {
@@ -364,6 +363,20 @@ describe("BbabyJubJubSignature2021", () => {
         {
           "@context": {
             "@protected": true,
+            "hypersign-vocab": "urn:uuid:13fe9318-bb82-4d95-8bf5-8e7fdf8b2026#",
+            HypersignCredentialStatus2023: {
+              "@id": "hypersign-vocab:HypersignCredentialStatus2023",
+              "@context": {
+                "@protected": true,
+                id: "@id",
+                type: "@type",
+              },
+            },
+          },
+        },
+        {
+          "@context": {
+            "@protected": true,
             "@version": 1.1,
             id: "@id",
             type: "@type",
@@ -407,6 +420,14 @@ describe("BbabyJubJubSignature2021", () => {
           center: "Mumbai",
         },
         invoiceNumber: "1234567890",
+      },
+      credentialSchema: {
+        id: "sch:hid:testnet:z6MkipbPd8k6N8BSraPwdBafpM8W5HzNS6jy3F7SwWjDk5Cs:1.0",
+        type: "JsonSchemaValidator2018",
+      },
+      credentialStatus: {
+        id: "http://127.0.0.1:1317/hypersign-protocol/hidnode/ssi/credential/vc:hid:testnet:z6MktDeNN2ZuydfGHoFtbvGvaxMug7dxncZtNspc5H7BkeSo",
+        type: "HypersignCredentialStatus2023",
       },
       id: "http://example.edu/credentials/3732",
       issuanceDate: "2023-10-10T05:03:27.153Z",
