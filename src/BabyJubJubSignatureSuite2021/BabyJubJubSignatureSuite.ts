@@ -71,8 +71,10 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
     return;
   }
 
-  async canonize(input: Record<string, any>) {
-    const merklized = await Merklizer.merklizeJSONLD(JSON.stringify(input));
+  async canonize(input: Record<string, any>, documentLoader: any) {
+    const merklized = await Merklizer.merklizeJSONLD(JSON.stringify(input), {
+      documentLoader,
+    });
 
     return merklized;
   }
@@ -111,7 +113,10 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
       expansionMap: options.expansionMap,
     });
 
-    const merklized = await this.canonize(options.document);
+    const merklized = await this.canonize(
+      options.document,
+      options.documentLoader
+    );
 
     const verifyData = (await merklized.root()).bigInt();
 
@@ -134,9 +139,16 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
     });
     return signatureBytes;
   }
-  async verifyProof(options: { document: any; proof: any }) {
+  async verifyProof(options: {
+    document: any;
+    proof: any;
+    documentLoader?: any;
+  }) {
     try {
-      const merklized = await this.canonize(options.document);
+      const merklized = await this.canonize(
+        options.document,
+        options.documentLoader
+      );
 
       const verifyData = (await merklized.root()).bigInt();
       const { proofValue } = options.proof;

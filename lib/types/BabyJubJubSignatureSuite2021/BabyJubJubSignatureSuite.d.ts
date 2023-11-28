@@ -26,7 +26,7 @@ declare class BabyJubJubSignature2021Suite extends LinkedDataSignature {
         document: any;
         addSuiteContext: any;
     }): void;
-    canonize(input: Record<string, any>): Promise<Merklizer>;
+    canonize(input: Record<string, any>, documentLoader: any): Promise<Merklizer>;
     createProof(options: {
         document: any;
         suite: BabyJubJubSignature2021Suite;
@@ -43,6 +43,7 @@ declare class BabyJubJubSignature2021Suite extends LinkedDataSignature {
     verifyProof(options: {
         document: any;
         proof: any;
+        documentLoader?: any;
     }): Promise<{
         verified: any;
         verificationMethod: {
