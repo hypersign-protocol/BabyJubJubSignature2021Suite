@@ -132,7 +132,7 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     return frame;
   }
 
-  async verifyProof(options: {
+   verifyProof(options: {
     proof: any;
     document: any;
     purpose: any;
@@ -155,7 +155,7 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     const hexRoot = ("0x" +
       Buffer.from(vcRoot).toString("hex")) as unknown as number;
 
-    const verified = await this.key.publicKey.verifyPoseidon(
+    const verified =  this.key.publicKey.verifyPoseidon(
       BigInt(hexRoot),
       decompactSignature(proof.proofValue)
     );

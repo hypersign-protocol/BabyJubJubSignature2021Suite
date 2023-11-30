@@ -20,7 +20,7 @@ export declare class BabyJubJubSignatureProof2021 extends LinkedDataProof {
         purpose: any;
         documentLoader: any;
         expansionMap: any;
-    }): Promise<{
+    }): {
         verified: boolean;
         verificationMethod: {
             id: any;
@@ -28,7 +28,7 @@ export declare class BabyJubJubSignatureProof2021 extends LinkedDataProof {
             publickeyMultibase: string | undefined;
             type: string;
         };
-    }>;
+    };
     matchProof(options: {
         proof: any;
         document: any;

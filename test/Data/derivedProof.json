@@ -388,7 +388,7 @@
   "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "proof": {
     "type": "BabyJubJubSignatureProof2021",
-    "created": "2023-11-29T06:53:45.226Z",
+    "created": "2023-11-30T13:07:48.623Z",
     "verificationMethod": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM#key-1",
     "proofPurpose": "assertionMethod",
     "credentialRoot": "z44ZLgbb1idYuyucCNbVHPX75CeBU3LyuAkCXjrKKVUwK.zgdZavPbeNWnbmCaxAnYUEZXU9DuaqnUohs4ktShAz6X",
