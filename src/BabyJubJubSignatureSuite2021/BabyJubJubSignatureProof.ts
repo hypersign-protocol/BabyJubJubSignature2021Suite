@@ -7,7 +7,7 @@ import {
   getDocumentLoader,
 } from "@iden3/js-jsonld-merklization";
 // @ts-ignore
-import jsonLd from "jsonld"
+import jsonLd from "jsonld";
 import {
   Merklizer,
   Path,
@@ -92,19 +92,21 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     //   throw new Error("proofDocument cannot be verified");
     // }
     delete proofDocument.proof;
-    const frame = await jsonLd.frame(proofDocument, revealDocument,{
-      documentLoader:params.documentLoader
+    const frame = await jsonLd.frame(proofDocument, revealDocument, {
+      documentLoader: params.documentLoader,
     });
 
     const proofDocument_mt = await Merklizer.merklizeJSONLD(
-      JSON.stringify(proofDocument),{
-        documentLoader:params.documentLoader
+      JSON.stringify(proofDocument),
+      {
+        documentLoader: params.documentLoader,
       }
     );
 
     const proofDocument_mt2 = await Merklizer.merklizeJSONLD(
-      JSON.stringify(frame),{
-        documentLoader:params.documentLoader
+      JSON.stringify(frame),
+      {
+        documentLoader: params.documentLoader,
       }
     );
 
@@ -113,7 +115,7 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     );
 
     const actualCredentialRoot = convertMultiBase(
-      Buffer.from((await proofDocument_mt.root()).bigInt().toString(16), "hex")
+      Buffer.from((await proofDocument_mt.root()).bigInt().toString())
     );
 
     const claim = actualCredentialRoot + "." + selectiveDisclosureRoot;
@@ -132,7 +134,7 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     return frame;
   }
 
-   verifyProof(options: {
+  verifyProof(options: {
     proof: any;
     document: any;
     purpose: any;
@@ -152,11 +154,10 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     const credentialRoot = proof.credentialRoot;
     const vc_root = credentialRoot.split(".")[0];
     const vcRoot = multibaseDecode(vc_root);
-    const hexRoot = ("0x" +
-      Buffer.from(vcRoot).toString("hex")) as unknown as number;
+    const root = Buffer.from(vcRoot).toString();
 
-    const verified =  this.key.publicKey.verifyPoseidon(
-      BigInt(hexRoot),
+    const verified = this.key.publicKey.verifyPoseidon(
+      BigInt(root),
       decompactSignature(proof.proofValue)
     );
 
