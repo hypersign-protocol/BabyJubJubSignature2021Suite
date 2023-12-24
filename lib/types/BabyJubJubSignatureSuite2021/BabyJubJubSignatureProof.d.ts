@@ -1,4 +1,4 @@
-import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
+import { BabyJubJubKeys2021 } from "babyjubjub2021";
 declare const LinkedDataProof: any;
 export declare class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     private type;

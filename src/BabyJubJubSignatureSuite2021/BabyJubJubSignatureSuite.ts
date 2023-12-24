@@ -20,7 +20,7 @@ import {
   decompactSignature,
   multibaseDecode,
 } from "../utils";
-import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
+import { BabyJubJubKeys2021 } from "babyjubjub2021";
 
 import { w3cDate } from "../utils";
 

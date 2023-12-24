@@ -1,7 +1,7 @@
 // @ts-ignore
 import jsigs from "jsonld-signatures";
 import * as fs from "fs";
-import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
+import { BabyJubJubKeys2021 } from "babyjubjub2021";
 import {
   DocumentLoader,
   getDocumentLoader,

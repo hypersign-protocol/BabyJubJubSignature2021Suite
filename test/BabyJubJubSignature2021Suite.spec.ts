@@ -1,4 +1,4 @@
-import { BabyJubJubKeys2021 } from "@hypersign-protocol/babyjubjub2021";
+import { BabyJubJubKeys2021 } from "babyjubjub2021";
 import { BabyJubJubSignature2021Suite, documentLoader } from "../src/index";
 import * as fs from "fs";
 //@ts-ignore
