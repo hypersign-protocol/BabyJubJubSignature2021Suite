@@ -112,6 +112,7 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
       documentLoader: options.documentLoader,
       expansionMap: options.expansionMap,
     });
+    options.document.proof = proof;
 
     const merklized = await this.canonize(
       options.document,
@@ -145,13 +146,18 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
     documentLoader?: any;
   }) {
     try {
+      delete options.proof["@context"];
+      const proofValue = options.proof.proofValue;
+      delete options.proof.proofValue;
+      options.document.proof = options.proof;
+
       const merklized = await this.canonize(
         options.document,
         options.documentLoader
       );
 
+
       const verifyData = (await merklized.root()).bigInt();
-      const { proofValue } = options.proof;
 
       const { verificationMethod } = options.proof;
 

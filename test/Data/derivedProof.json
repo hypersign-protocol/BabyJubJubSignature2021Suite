@@ -212,6 +212,55 @@
             }
           }
         },
+        "BJJSignature2021": {
+          "@id": "https://w3id.org/security#Ed25519Signature2018",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "sec": "https://w3id.org/security#",
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "challenge": "sec:challenge",
+            "created": {
+              "@id": "http://purl.org/dc/terms/created",
+              "@type": "xsd:dateTime"
+            },
+            "domain": "sec:domain",
+            "expires": {
+              "@id": "sec:expiration",
+              "@type": "xsd:dateTime"
+            },
+            "jws": "sec:jws",
+            "nonce": "sec:nonce",
+            "proofPurpose": {
+              "@id": "sec:proofPurpose",
+              "@type": "@vocab",
+              "@context": {
+                "@version": 1.1,
+                "@protected": true,
+                "id": "@id",
+                "type": "@type",
+                "sec": "https://w3id.org/security#",
+                "assertionMethod": {
+                  "@id": "sec:assertionMethod",
+                  "@type": "@id",
+                  "@container": "@set"
+                },
+                "authentication": {
+                  "@id": "sec:authenticationMethod",
+                  "@type": "@id",
+                  "@container": "@set"
+                }
+              }
+            },
+            "proofValue": "sec:proofValue",
+            "verificationMethod": {
+              "@id": "sec:verificationMethod",
+              "@type": "@id"
+            }
+          }
+        },
         "Ed25519Signature2018": {
           "@id": "https://w3id.org/security#Ed25519Signature2018",
           "@context": {
@@ -388,10 +437,10 @@
   "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "proof": {
     "type": "BabyJubJubSignatureProof2021",
-    "created": "2023-12-01T06:00:09.618Z",
+    "created": "2024-09-17T12:08:46.417Z",
     "verificationMethod": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM#key-1",
     "proofPurpose": "assertionMethod",
-    "credentialRoot": "zNPxVDpqb272ctjZEftaNgyvKhBnnsXME6gN1WTxx4EJqcXi23Ygk6jLbBkqewqTK3eCBZfKX2vwSEuXU3HUMfMdB6FouE2V75No1CcpZs.zgdZavPbeNWnbmCaxAnYUEZXU9DuaqnUohs4ktShAz6X",
-    "proofValue": "zXVF5rFkZR8CEVHEgcmqQnjK6cTLJ8rLAGWvXrhc7SJNeHvR4Ph1qnrpk1kiaXuv5bmtaiHjMUZgbysLVHXAnUNT"
+    "credentialRoot": "z5wn9iZj86fJEANTL9BHCvodeFCxc2pJTSJqcXJBV2Rx7QisXtV5xuF3MXicRjxDUd4hcrSkARKXx9bthpf9kY4xYmEFxmFTCQDHEWgDk.zgdZavPbeNWnbmCaxAnYUEZXU9DuaqnUohs4ktShAz6X",
+    "proofValue": "z38e5s9Jc796dnUhzZQVFg472YTKLgHDhx6wsgKzSwnYAn3cPFjRMV6t8rgaaRM9ShoEQeFXtYzNZW5injzZn9UDo"
   }
 }
