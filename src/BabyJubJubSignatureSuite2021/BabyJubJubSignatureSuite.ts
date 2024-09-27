@@ -156,7 +156,7 @@ class BabyJubJubSignature2021Suite extends LinkedDataSignature {
         options.documentLoader
       );
 
-
+      options.proof.proofValue=proofValue
       const verifyData = (await merklized.root()).bigInt();
 
       const { verificationMethod } = options.proof;

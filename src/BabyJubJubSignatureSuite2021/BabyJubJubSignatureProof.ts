@@ -92,10 +92,10 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     //   throw new Error("proofDocument cannot be verified");
     // }
 
+    const proofDoc: any = {};
+    Object.assign(proofDoc, proofDocument.proof);
 
-    const proofValue=proofDocument.proof.proofValue
     delete proofDocument.proof.proofValue;
-    
 
     const proofDocument_mt = await Merklizer.merklizeJSONLD(
       JSON.stringify(proofDocument),
@@ -124,14 +124,15 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     );
 
     const claim = actualCredentialRoot + "." + selectiveDisclosureRoot;
+    proofDocument.proof = proofDoc;
 
     const derivedProof = {
       type: this.type,
       created: new Date().toISOString(),
-      verificationMethod: proof.verificationMethod,
-      proofPurpose: proof.proofPurpose,
+      verificationMethod: proofDoc.verificationMethod,
+      proofPurpose: proofDoc.proofPurpose,
       credentialRoot: claim,
-      proofValue: proofValue,
+      proofValue: proofDoc.proofValue,
     };
 
     frame["proof"] = derivedProof;
