@@ -91,10 +91,11 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     // if (!verifyCredential.verified) {
     //   throw new Error("proofDocument cannot be verified");
     // }
-    delete proofDocument.proof;
-    const frame = await jsonLd.frame(proofDocument, revealDocument, {
-      documentLoader: params.documentLoader,
-    });
+
+    const proofDoc: any = {};
+    Object.assign(proofDoc, proofDocument.proof);
+
+    delete proofDocument.proof.proofValue;
 
     const proofDocument_mt = await Merklizer.merklizeJSONLD(
       JSON.stringify(proofDocument),
@@ -102,7 +103,11 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
         documentLoader: params.documentLoader,
       }
     );
+    delete proofDocument.proof;
 
+    const frame = await jsonLd.frame(proofDocument, revealDocument, {
+      documentLoader: params.documentLoader,
+    });
     const proofDocument_mt2 = await Merklizer.merklizeJSONLD(
       JSON.stringify(frame),
       {
@@ -119,14 +124,15 @@ export class BabyJubJubSignatureProof2021 extends LinkedDataProof {
     );
 
     const claim = actualCredentialRoot + "." + selectiveDisclosureRoot;
+    proofDocument.proof = proofDoc;
 
     const derivedProof = {
       type: this.type,
       created: new Date().toISOString(),
-      verificationMethod: proof.verificationMethod,
-      proofPurpose: proof.proofPurpose,
+      verificationMethod: proofDoc.verificationMethod,
+      proofPurpose: proofDoc.proofPurpose,
       credentialRoot: claim,
-      proofValue: proof.proofValue,
+      proofValue: proofDoc.proofValue,
     };
 
     frame["proof"] = derivedProof;

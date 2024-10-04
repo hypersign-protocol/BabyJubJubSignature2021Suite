@@ -69,7 +69,6 @@ describe("BbabyJubJubSignature2021", () => {
                     "@protected": true,
                     id: "@id",
                     type: "https://www.w3.org/2018/credentials#JsonSchemaValidator2018",
-              
                   },
                 },
                 credentialStatus: {
@@ -212,6 +211,55 @@ describe("BbabyJubJubSignature2021", () => {
             },
             EcdsaSecp256r1Signature2019: {
               "@id": "https://w3id.org/security#EcdsaSecp256r1Signature2019",
+              "@context": {
+                "@version": 1.1,
+                "@protected": true,
+                id: "@id",
+                type: "@type",
+                sec: "https://w3id.org/security#",
+                xsd: "http://www.w3.org/2001/XMLSchema#",
+                challenge: "sec:challenge",
+                created: {
+                  "@id": "http://purl.org/dc/terms/created",
+                  "@type": "xsd:dateTime",
+                },
+                domain: "sec:domain",
+                expires: {
+                  "@id": "sec:expiration",
+                  "@type": "xsd:dateTime",
+                },
+                jws: "sec:jws",
+                nonce: "sec:nonce",
+                proofPurpose: {
+                  "@id": "sec:proofPurpose",
+                  "@type": "@vocab",
+                  "@context": {
+                    "@version": 1.1,
+                    "@protected": true,
+                    id: "@id",
+                    type: "@type",
+                    sec: "https://w3id.org/security#",
+                    assertionMethod: {
+                      "@id": "sec:assertionMethod",
+                      "@type": "@id",
+                      "@container": "@set",
+                    },
+                    authentication: {
+                      "@id": "sec:authenticationMethod",
+                      "@type": "@id",
+                      "@container": "@set",
+                    },
+                  },
+                },
+                proofValue: "sec:proofValue",
+                verificationMethod: {
+                  "@id": "sec:verificationMethod",
+                  "@type": "@id",
+                },
+              },
+            },
+            BJJSignature2021: {
+              "@id": "https://w3id.org/security#Ed25519Signature2018",
               "@context": {
                 "@version": 1.1,
                 "@protected": true,
@@ -441,6 +489,8 @@ describe("BbabyJubJubSignature2021", () => {
       }),
       // @ts-ignore
       purpose: new jsigs.purposes.AssertionProofPurpose({
+        // @ts-ignore
+
         controller: {
           "@context": ["https://www.w3.org/ns/did/v1"],
           id: DID.id + "#key-1",
@@ -465,8 +515,9 @@ describe("BbabyJubJubSignature2021", () => {
           },
         }),
       }),
-      // @ts-ignore
       purpose: new jsigs.purposes.AssertionProofPurpose({
+        // @ts-ignore
+
         controller: {
           "@context": ["https://www.w3.org/ns/did/v1"],
           id: DID.id + "#key-1",
