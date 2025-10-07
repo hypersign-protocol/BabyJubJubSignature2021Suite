@@ -437,10 +437,10 @@
   "issuer": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM",
   "proof": {
     "type": "BabyJubJubSignatureProof2021",
-    "created": "2024-09-26T13:13:44.749Z",
+    "created": "2025-10-07T12:34:47.894Z",
     "verificationMethod": "did:hid:testnet:z543717GD36C5VSajKzLALZzcTakhmme2LgC1ywW1YwTM#key-1",
     "proofPurpose": "assertionMethod",
-    "credentialRoot": "zMyL4uPTrZVqkYpmuNhsmQRKtJA5LGRU3FV3gA8i7LB5aPd9BroyzdcWUpCerbs6HYSVWqZFvnXY11RhdaPoWfXMkSSxKTGbBR3LXCzWJj.zgdZavPbeNWnbmCaxAnYUEZXU9DuaqnUohs4ktShAz6X",
-    "proofValue": "z3GESp2NdapKWhTqjHLRmXBJifz1pPTSAcvWTN9eKq6na9j9EJVf3662aUCGV36hgDDZU4CydbDuthFbJnF2Rvs7z"
+    "credentialRoot": "zMyiKgRrsYrZjkPGcJydkviCJ8KbgB29wWV91bJeRnBgGxobBj7Z7GD3LgNVWLorxLWWjbtMkgaWKPVXqXHWnbzRnJjVUyvtXXC1HV23aC.zgdZavPbeNWnbmCaxAnYUEZXU9DuaqnUohs4ktShAz6X",
+    "proofValue": "z4gtP8BszdJph9rpE9W3sFoBvVg4oW7DxDg3CKhLvUocfuXs1dVoGaTQ9D4zN2dMmdc9GWhVYuCB9zVtK6FUAHJWV"
   }
 }
